@@ -24,7 +24,7 @@ import store from '@/store.js'
 import { mapState } from 'vuex'
 
 export default {
-  name: 'LocatorModal',
+  name: 'locator-modal',
   components: {
     VueGoogleAutocomplete
   },
