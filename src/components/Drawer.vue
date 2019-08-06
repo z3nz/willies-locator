@@ -8,7 +8,7 @@
       <slot name="options"/>
     </div>
 
-    <div class="content">
+    <div v-show="open" class="content">
       <slot name="content"/>
     </div>
   </div>
@@ -81,5 +81,9 @@ h1 {
   letter-spacing: 0.04px;
   text-align: left;
   color: #002554;
+}
+
+.content {
+  padding: 15px 0px 0px;
 }
 </style>
