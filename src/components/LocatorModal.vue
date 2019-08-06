@@ -32,7 +32,7 @@ export default {
     modalOpen: state => state.modalOpen
   }),
   mounted () {
-    store.commit('toggleModal', true)
+    // store.commit('toggleModal', true)
   },
   methods: {
     addressChange (address) {
