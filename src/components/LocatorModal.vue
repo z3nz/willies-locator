@@ -73,7 +73,6 @@ export default {
 
 h1 {
   font-size: 37px;
-  font-weight: 500;
   line-height: 1;
   letter-spacing: 0.07px;
   color: #011e41;

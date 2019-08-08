@@ -10,7 +10,8 @@
         :key="product.id"
         class="product"
       >
-        <img src="//via.placeholder.com/75x110">
+        <!-- <img src="//via.placeholder.com/75x110"> -->
+        <img :src="product.thumb_url">
         <div class="name">{{ product.name }}</div>
         <div class="price">${{ product.price }}</div>
         <div @click="buttonClick(product)" class="button">Add to Cart</div>
@@ -56,15 +57,15 @@ export default {
       return [
         {
           'id': 16901,
-          'name': 'Adesso Italy Dessert 2011',
-          'price': 12.95,
+          'name': 'Sparkling Giner & Lemon',
+          'price': 9.99,
           'description': 'Adesso Cagnina di Romagna is soft garnet in color. It is medium in body with a pleasant nose of red berries and flavors of black raspberries, cherries and spice. It is nicely balanced to enjoy now and over the next 3-4 years. This wine is long and silky smooth on the finish and easy to love with low alcohol! Enjoy Adesso Cagnina di Romagna with pasta, veal Milanese, chicken cutlet and mild cheeses.',
           'sku': 'AC-P-1004',
           'volume': '750ML',
           'brand': 'Adesso',
           'stocks': 34,
           'tags': [],
-          'thumb_url': 'http://localhost:5000/products/7271/small/Adesso-Cag.jpg?1403705966',
+          'thumb_url': 'https://images.squarespace-cdn.com/content/v1/5a9827308f51303fb5c9f4be/1553258236278-PREKT853AO0JQPLGW3DQ/ke17ZwdGBToddI8pDm48kGT5ta17mUrREhgpKOC3HkwUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8PaoYXhp6HxIwZIk7-Mi3Tsic-L2IOPH3Dwrhl-Ne3Z2XCR5bjbIC5G9leYBnppCmYyUQWY2YwTpuTVdhwZYUrQKMshLAGzx4R3EDFOm1kBS/New+Ginger+Mockup+small.png?format=500w',
           'image_url': 'http://localhost:5000/products/7271/product/Adesso-Cag.jpg?1403705966',
           'properties': [
             {
@@ -88,15 +89,15 @@ export default {
         },
         {
           'id': 16967,
-          'name': 'Cocoa Divine Cherry',
-          'price': 12.95,
+          'name': 'Sparkling Pomegranate & Acai',
+          'price': 9.99,
           'description': 'Cocoa di Vine Chocolate & Wine is a combination of rich chocolate cream from one of the country’s top creameries in Wisconsin and a white wine blend produced in the USA from Argentine grapes. This delicious beverage offers chocolate flavors with undertones of vanilla and caramel. Enjoy as a dessert.\r\nShake well before consuming. With proper refrigeration from date of purchase, this product has a shelf life of 9 to 12 months. Enjoy within six months when stored at room temperature.  Refrigerate after opening. This product contains dairy. -opiciwines.com',
           'sku': 'AC-P-1381',
           'volume': '750ML',
           'brand': 'Cocoa di Vine',
           'stocks': 4,
           'tags': [],
-          'thumb_url': 'http://localhost:5000/products/7273/small/cocoa_di_v.jpg?1403705998',
+          'thumb_url': 'https://images.squarespace-cdn.com/content/v1/5a9827308f51303fb5c9f4be/1553258252958-I0C4SCZS4B78EN59XREK/ke17ZwdGBToddI8pDm48kGT5ta17mUrREhgpKOC3HkwUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8PaoYXhp6HxIwZIk7-Mi3Tsic-L2IOPH3Dwrhl-Ne3Z2XCR5bjbIC5G9leYBnppCmYyUQWY2YwTpuTVdhwZYUrQKMshLAGzx4R3EDFOm1kBS/New+Pom+Mockup+small.png?format=500w',
           'image_url': 'http://localhost:5000/products/7273/product/cocoa_di_v.jpg?1403705998',
           'properties': [
             {
@@ -120,15 +121,15 @@ export default {
         },
         {
           'id': 16966,
-          'name': 'Cocoa di Vine Espresso',
-          'price': 12.95,
+          'name': 'Sparkling Mango & Passionfruit',
+          'price': 9.99,
           'description': 'Rich, velvety-smooth chocolate flavors, combine with undertones of vanilla and caramel. An intoxicating blend of chocolate and wine, Cocoa di Vine* is the ultimate indulgence! -totalwine.com',
           'sku': 'AC-P-1380',
           'volume': '750ML',
           'brand': 'Cocoa di Vine',
           'stocks': 2,
           'tags': [],
-          'thumb_url': 'http://localhost:5000/products/7275/small/62dbcb6ed8.jpg?1403705994',
+          'thumb_url': 'https://images.squarespace-cdn.com/content/v1/5a9827308f51303fb5c9f4be/1553258211051-QDII4FLGNT7IK8A3GTHY/ke17ZwdGBToddI8pDm48kGT5ta17mUrREhgpKOC3HkwUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8PaoYXhp6HxIwZIk7-Mi3Tsic-L2IOPH3Dwrhl-Ne3Z2XCR5bjbIC5G9leYBnppCmYyUQWY2YwTpuTVdhwZYUrQKMshLAGzx4R3EDFOm1kBS/Mango+Mockup+small.png?format=500w',
           'image_url': 'http://localhost:5000/products/7275/product/62dbcb6ed8.jpg?1403705994',
           'properties': [
             {
@@ -231,14 +232,12 @@ export default {
   display: inline-block;
   vertical-align: top;
   text-align: center;
-  width: 100px;
-
-  &:not(:last-child) {
-    margin-right: 45px;
-  }
+  width: 125px;
+  margin-left: 45px;
 
   img {
     margin-bottom: 5px;
+    width: 75px;
   }
 
   .name,
@@ -251,7 +250,7 @@ export default {
   }
 
   .price {
-    font-weight: 500;
+    font-weight: bold;
     margin-top: 2px;
   }
 
@@ -262,6 +261,7 @@ export default {
     padding: 8px 6px;
     border-radius: 5px;
     margin-top: 2px;
+    cursor: pointer;
   }
 }
 </style>

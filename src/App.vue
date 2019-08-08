@@ -21,5 +21,6 @@ export default {
 <style lang="scss">
 * {
   box-sizing: border-box;
+  font-family: europa;
 }
 </style>

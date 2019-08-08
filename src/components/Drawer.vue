@@ -30,7 +30,7 @@ export default {
 .drawer {
   width: 100%;
   border: 17px solid;
-  padding: 15px 0px 15px 50px;
+  padding: 15px 0px 15px;
   position: relative;
 
   &.yellow {
@@ -54,6 +54,7 @@ export default {
   left: 20px;
   top: 7px;
   transition: transform .3s ease;
+  cursor: pointer;
 
   &.open {
     transform: rotate(90deg);
@@ -62,13 +63,15 @@ export default {
 
 h1 {
   font-size: 20px;
-  font-weight: 500;
   line-height: 0.72;
   letter-spacing: 0.04px;
   color: #002554;
   margin: 0px;
+  padding-left: 50px;
   cursor: pointer;
   user-select: none;
+  z-index: 1;
+  position: relative;
 }
 
 .options {
@@ -76,7 +79,7 @@ h1 {
   right: 20px;
   top: 15px;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: bold;
   line-height: 0.72;
   letter-spacing: 0.04px;
   text-align: left;
