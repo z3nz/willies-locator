@@ -232,7 +232,7 @@ export default {
       // }
     },
     buttonClick (product) {
-
+      window.open('https://minibardelivery.com/store/product/budweiser-select', '_blank')
     }
   }
 }
