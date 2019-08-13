@@ -47,46 +47,47 @@ export default {
     border-color: #f6a439;
     background-color: #f8eddd;
   }
-}
 
-.caret {
-  position: absolute;
-  left: 20px;
-  top: 7px;
-  transition: transform .3s ease;
-  cursor: pointer;
+  .caret {
+    position: absolute;
+    left: 20px;
+    top: 7px;
+    transition: transform .3s ease;
+    cursor: pointer;
 
-  &.open {
-    transform: rotate(90deg);
+    &.open {
+      transform: rotate(90deg);
+    }
+  }
+
+  h1 {
+    font-size: 20px;
+    line-height: 0.72;
+    letter-spacing: 0.04px;
+    color: #002554;
+    margin: 0px;
+    padding-left: 50px;
+    cursor: pointer;
+    user-select: none;
+    z-index: 1;
+    position: relative;
+  }
+
+  .options {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 0.72;
+    letter-spacing: 0.04px;
+    text-align: left;
+    color: #002554;
+  }
+
+  .content {
+    padding: 15px 0px 0px;
   }
 }
 
-h1 {
-  font-size: 20px;
-  line-height: 0.72;
-  letter-spacing: 0.04px;
-  color: #002554;
-  margin: 0px;
-  padding-left: 50px;
-  cursor: pointer;
-  user-select: none;
-  z-index: 1;
-  position: relative;
-}
-
-.options {
-  position: absolute;
-  right: 20px;
-  top: 15px;
-  font-size: 20px;
-  font-weight: bold;
-  line-height: 0.72;
-  letter-spacing: 0.04px;
-  text-align: left;
-  color: #002554;
-}
-
-.content {
-  padding: 15px 0px 0px;
-}
 </style>

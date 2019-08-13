@@ -9,7 +9,7 @@
             placeholder="Enter your address..."
             @placechanged="addressChange"
             country="us"
-            :enable-geolocation="true"
+            autofocus
           />
           <label>Start typing your address, and choose the best option that pops up!</label>
         </div>
