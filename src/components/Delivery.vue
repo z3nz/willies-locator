@@ -23,7 +23,7 @@
 <script>
 import Drawer from './Drawer.vue'
 import axios from 'axios'
-import qs from 'qs'
+// import qs from 'qs'
 import { mapState } from 'vuex'
 
 export default {
