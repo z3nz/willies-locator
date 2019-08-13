@@ -1,6 +1,6 @@
 <template>
   <drawer :open="open" class="yellow">
-    <h1 @click="open = !open" slot="header">Home alcohol delivery services ({{ options }})</h1>
+    <span @click="open = !open" slot="header" class="header">Home alcohol delivery services ({{ options }})</span>
 
     <div v-if="open" slot="options">Minibar</div>
 

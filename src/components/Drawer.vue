@@ -60,7 +60,7 @@ export default {
     }
   }
 
-  h1 {
+  .header {
     font-size: 20px;
     line-height: 0.72;
     letter-spacing: 0.04px;
