@@ -9,7 +9,7 @@ export default new Vuex.Store({
     modalOpen: false
   },
   getters: {
-
+    address: state => state.address
   },
   mutations: {
     setAddress (state, address) {
