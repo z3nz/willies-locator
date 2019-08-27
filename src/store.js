@@ -9,7 +9,10 @@ export default new Vuex.Store({
     modalOpen: false
   },
   getters: {
-    address: state => state.address
+    address: state => state.address,
+    addressString: ({ address }) => {
+      return address ? `${address.street_number} ${address.route}, ${address.locality}, ${address.administrative_area_level_1} ${address.postal_code}` : ''
+    }
   },
   mutations: {
     setAddress (state, address) {

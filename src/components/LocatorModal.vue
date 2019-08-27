@@ -20,11 +20,10 @@
 
 <script>
 import VueGoogleAutocomplete from 'vue-google-autocomplete'
-import store from '@/store.js'
 import { mapState } from 'vuex'
 
 export default {
-  name: 'locator-modal',
+  name: 'LocatorModal',
   components: {
     VueGoogleAutocomplete
   },
@@ -32,12 +31,12 @@ export default {
     modalOpen: state => state.modalOpen
   }),
   mounted () {
-    store.commit('toggleModal', true)
+    this.$store.commit('toggleModal', true)
   },
   methods: {
     addressChange (address) {
-      store.commit('setAddress', address)
-      store.commit('toggleModal', false)
+      this.$store.commit('setAddress', address)
+      this.$store.commit('toggleModal', false)
     }
   }
 }
@@ -46,7 +45,7 @@ export default {
 <style lang="scss" scoped>
 .modal-mask {
   position: fixed;
-  z-index: 999;
+  z-index: 1002;
   top: 0;
   left: 0;
   width: 100%;

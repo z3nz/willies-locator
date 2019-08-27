@@ -3,6 +3,9 @@
     <span @click="open = !open" slot="header" class="header">Home alcohol delivery services ({{ options }})</span>
 
     <div v-if="open" slot="options">Minibar</div>
+    <div v-else-if="loading" slot="options" class="loader">
+      <fai icon="cog" spin fixed-width/>
+    </div>
 
     <div slot="content">
       <div
@@ -34,13 +37,14 @@ const minibarLinks = {
 }
 
 export default {
-  name: 'delivery',
+  name: 'Delivery',
   components: {
     Drawer
   },
   data () {
     return {
       open: false,
+      loading: false,
       minibar: {
         url: 'https://minibardelivery.com/',
         id: '6a5ede78e518df233ee25beeee17637ea1ae4eabc285564509639e959ba76a6a',
@@ -71,8 +75,13 @@ export default {
     address: {
       async handler (val) {
         if (val) {
+          this.open = false
+          this.loading = true
+          this.minibar.products = []
           await this.getMinibarToken()
-          this.checkMinibar()
+          await this.checkMinibar()
+          this.loading = false
+          if (this.products.length) this.open = true
         }
       }
     }
@@ -96,28 +105,31 @@ export default {
         }
       })
     },
-    async checkMinibar () {
-      this.minibar.suppliers = []
-      const query = qs.stringify({ coords: {
-        lat: this.address.latitude,
-        lng: this.address.longitude
-      } }, { encode: false })
+    checkMinibar () {
+      return new Promise(async resolve => {
+        this.minibar.suppliers = []
+        const query = qs.stringify({ coords: {
+          lat: this.address.latitude,
+          lng: this.address.longitude
+        } }, { encode: false })
 
-      let { data } = await axios.get(`${this.minibar.url}api/v2/suppliers?${query}`, { headers: this.minibarHeaders })
-      console.log(data)
-      this.minibar.suppliers = data.suppliers
-
-      if (this.minibar.suppliers.length) {
-        const ids = this.minibar.suppliers.map(s => s.id).join()
-        let { data } = await axios.get(`${this.minibar.url}api/v2/supplier/${ids}/products`, {
-          headers: this.minibarHeaders,
-          params: {
-            query: 'Willie\'s Superbrew'
-          }
-        })
+        let { data } = await axios.get(`${this.minibar.url}api/v2/suppliers?${query}`, { headers: this.minibarHeaders })
         console.log(data)
-        this.minibar.products = data.products.sort((a, b) => a.name.localeCompare(b.name))
-      }
+        this.minibar.suppliers = data.suppliers
+
+        if (this.minibar.suppliers.length) {
+          const ids = this.minibar.suppliers.map(s => s.id).join()
+          let { data } = await axios.get(`${this.minibar.url}api/v2/supplier/${ids}/products`, {
+            headers: this.minibarHeaders,
+            params: {
+              query: 'Willie\'s Superbrew'
+            }
+          })
+          console.log(data)
+          this.minibar.products = data.products.sort((a, b) => a.name.localeCompare(b.name))
+        }
+        resolve()
+      })
 
       // NOTE: leaving incase we want to search by product id
       // const { data } = await axios.post(`${this.minibar.url}api/v2/check_product_availability`, {
@@ -138,43 +150,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.product {
-  display: inline-block;
-  vertical-align: top;
-  text-align: center;
-  width: 115px;
-  margin-left: 45px;
-
-  img {
-    margin-bottom: 5px;
-    width: 75px;
-  }
-
-  .name,
-  .price,
-  .volume,
-  .button {
-    font-size: 14px;
-    line-height: 1;
-    letter-spacing: 0.03px;
-    color: #002554;
-  }
-
-  .volume, .price {
-    font-weight: bold;
-    margin-top: 5px;
-  }
-
-  .button {
-    display: inline-block;
-    background-color: #011e41;
-    color: #ffffff;
-    padding: 8px 6px;
-    border-radius: 5px;
-    margin-top: 5px;
-    cursor: pointer;
-  }
-}
-</style>

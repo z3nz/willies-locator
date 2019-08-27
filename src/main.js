@@ -11,7 +11,7 @@ library.add(fas)
 library.add(fab)
 library.add(far)
 
-Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('fai', FontAwesomeIcon)
 
 Vue.config.productionTip = false
 
