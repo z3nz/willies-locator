@@ -62,7 +62,6 @@ export default {
 
   .header {
     font-size: 20px;
-    line-height: 0.72;
     letter-spacing: 0.04px;
     color: #002554;
     margin: 0px;
@@ -71,6 +70,8 @@ export default {
     user-select: none;
     z-index: 1;
     position: relative;
+    display: inline-block;
+    line-height: 1;
   }
 
   .options {
@@ -79,10 +80,10 @@ export default {
     top: 15px;
     font-size: 20px;
     font-weight: bold;
-    line-height: 0.72;
     letter-spacing: 0.04px;
     text-align: left;
     color: #002554;
+    line-height: 1;
 
     .loader {
       font-size: 25px;
@@ -98,7 +99,7 @@ export default {
     vertical-align: top;
     text-align: center;
     width: 115px;
-    margin-left: 45px;
+    margin: 20px;
 
     img {
       margin-bottom: 5px;
@@ -128,6 +129,14 @@ export default {
       border-radius: 5px;
       margin-top: 5px;
       cursor: pointer;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .drawer {
+    .header {
+      width: 66%;
     }
   }
 }

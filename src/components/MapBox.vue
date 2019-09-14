@@ -36,7 +36,7 @@ function getId (props) {
 function flyToStore (currentFeature, zoom) {
   map.flyTo({
     center: currentFeature.geometry.coordinates,
-    zoom
+    ...(zoom ? { zoom } : {})
   })
 }
 
@@ -174,69 +174,63 @@ export default {
 </script>
 
 <style lang="scss">
-  .content-container {
-    padding: 15px 30px;
+.content-container {
+  padding: 15px 30px;
+}
+
+.img-container {
+  text-align: center;
+}
+
+#map,
+#listings {
+  display: inline-block;
+  vertical-align: top;
+  height: 500px;
+}
+
+#map {
+  width: 66%;
+}
+
+#listings {
+  width: 33%;
+  background-color: white;
+}
+
+#listings h1 {
+  background: white;
+  text-align: center;
+  padding: 5px;
+  margin: 0;
+}
+
+#listings #results {
+  height: calc(100% - 56px);
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+#listings #results .item {
+  margin-bottom: 10px;
+}
+
+#listings #results .item.active {
+  background-color: whitesmoke;
+}
+
+@media only screen and (max-width: 768px) {
+  .img-container img {
+    width: 100%;
   }
 
-  .img-container {
-    text-align: center;
-  }
-
-  #map,
   #listings {
-    display: inline-block;
-    vertical-align: top;
-    height: 500px;
+    display: none;
   }
 
   #map {
-    width: 66%;
+    width: 100%;
   }
-
-  #listings {
-    width: 33%;
-    background-color: white;
-  }
-
-  #listings h1 {
-    background: white;
-    text-align: center;
-    padding: 5px;
-    margin: 0;
-  }
-
-  #listings #results {
-    height: calc(100% - 56px);
-    overflow-y: auto;
-    box-sizing: border-box;
-    padding: 5px;
-  }
-
-  #listings #results .item {
-    margin-bottom: 10px;
-  }
-
-  #listings #results .item.active {
-    background-color: whitesmoke;
-  }
-
-  @media only screen and (max-width: 768px) {
-    #listings {
-      display: none;
-    }
-
-    .map-container {
-      margin: 0px -34px;
-    }
-
-    #map {
-      width: 100%;
-    }
-  }
-
-  @media only screen and (max-width: 640px) {
-    .map-container {
-      margin: 0px -20px;
-    }
-  }
+}
 </style>
