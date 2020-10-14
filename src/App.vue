@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="input-container">
+    <!-- <div class="input-container">
       <vue-google-autocomplete
         id="autocomplete2"
         placeholder="Enter your address..."
@@ -8,54 +8,62 @@
         country="us"
         :value="addressString"
       />
-    </div>
+    </div> -->
     <Delivery/>
     <Grocery/>
-    <MapBox/>
-    <LocatorModal/>
+    <!-- <MapBox/>
+    <LocatorModal/> -->
   </div>
 </template>
 
 <script>
-import VueGoogleAutocomplete from 'vue-google-autocomplete'
-import LocatorModal from '@/components/LocatorModal'
+// import VueGoogleAutocomplete from 'vue-google-autocomplete'
 import Delivery from '@/components/Delivery'
 import Grocery from '@/components/Grocery'
-import MapBox from '@/components/MapBox'
+// import MapBox from '@/components/MapBox'
+// import LocatorModal from '@/components/LocatorModal'
 
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'app',
   components: {
-    VueGoogleAutocomplete,
-    LocatorModal,
+    // VueGoogleAutocomplete,
     Delivery,
-    Grocery,
-    MapBox
-  },
-  data () {
-    return {
-      // addressSearch: ''
-    }
+    Grocery
+    // MapBox
+    // LocatorModal,
   },
   computed: {
-    ...mapGetters(['addressString'])
+    ...mapGetters(['address'])
   },
-  // watch: {
-  //   address: {
-  //     handler (val) {
-  //       if (val) {
+  created () {
+    // setTimeout(() => {
+    //   const q = new URLSearchParams(window.location.search)
+    //   q.set('lat', 42.4046319)
+    //   q.set('lng', -71.1184477)
+    //   const path = window.location.pathname + '?' + q.toString()
+    //   history.pushState(null, '', path)
+    //   console.log(window.location.search)
+    // }, 3000)
 
-  //       }
-  //     }
-  //   }
-  // },
-  methods: {
-    addressChange (address) {
-      this.$store.commit('setAddress', address)
-    }
+    setInterval(() => {
+      const q = new URLSearchParams(window.location.search)
+      const latitude = +q.get('lat')
+      const longitude = +q.get('lng')
+      if (latitude && longitude) {
+        if (!this.address || latitude !== this.address.latitude || longitude !== this.address.longitude) {
+          console.log(this.address, latitude, longitude)
+          this.$store.commit('setAddress', { latitude, longitude })
+        }
+      }
+    }, 500)
   }
+  // methods: {
+  //   addressChange (address) {
+  //     this.$store.commit('setAddress', address)
+  //   }
+  // }
 }
 </script>
 

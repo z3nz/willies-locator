@@ -196,28 +196,28 @@ export default {
 #listings {
   width: 33%;
   background-color: white;
-}
 
-#listings h1 {
-  background: white;
-  text-align: center;
-  padding: 5px;
-  margin: 0;
-}
+  h1 {
+    background: white;
+    text-align: center;
+    padding: 5px;
+    margin: 0;
+  }
 
-#listings #results {
-  height: calc(100% - 56px);
-  overflow-y: auto;
-  box-sizing: border-box;
-  padding: 5px;
-}
+  #results {
+    height: calc(100% - 56px);
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 5px;
 
-#listings #results .item {
-  margin-bottom: 10px;
-}
+    .item {
+      margin-bottom: 10px;
 
-#listings #results .item.active {
-  background-color: whitesmoke;
+      &.active {
+        background-color: whitesmoke;
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 768px) {
