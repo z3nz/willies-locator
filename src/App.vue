@@ -53,7 +53,7 @@ export default {
       const longitude = +q.get('lng')
       if (latitude && longitude) {
         if (!this.address || latitude !== this.address.latitude || longitude !== this.address.longitude) {
-          console.log(this.address, latitude, longitude)
+          // console.log(this.address, latitude, longitude)
           this.$store.commit('setAddress', { latitude, longitude })
         }
       }
