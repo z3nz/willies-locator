@@ -11,6 +11,8 @@ library.add(faCog, faAngleRight)
 
 Vue.component('fai', FontAwesomeIcon)
 
+Vue.prototype.$fbq = (...args) => typeof window.fbq === 'function' && window.fbq(...args)
+
 Vue.config.productionTip = false
 
 new Vue({

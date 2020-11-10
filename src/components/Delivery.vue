@@ -105,31 +105,28 @@ export default {
         }
       })
     },
-    checkMinibar () {
-      return new Promise(async resolve => {
-        this.minibar.suppliers = []
-        const query = qs.stringify({ coords: {
-          lat: this.address.latitude,
-          lng: this.address.longitude
-        } }, { encode: false })
+    async checkMinibar () {
+      this.minibar.suppliers = []
+      const query = qs.stringify({ coords: {
+        lat: this.address.latitude,
+        lng: this.address.longitude
+      } }, { encode: false })
 
-        let { data } = await axios.get(`${this.minibar.url}api/v2/suppliers?${query}`, { headers: this.minibarHeaders })
+      let { data } = await axios.get(`${this.minibar.url}api/v2/suppliers?${query}`, { headers: this.minibarHeaders })
+      console.log(data)
+      this.minibar.suppliers = data.suppliers
+
+      if (this.minibar.suppliers.length) {
+        const ids = this.minibar.suppliers.map(s => s.id).join()
+        let { data } = await axios.get(`${this.minibar.url}api/v2/supplier/${ids}/products`, {
+          headers: this.minibarHeaders,
+          params: {
+            query: 'Willie\'s Superbrew'
+          }
+        })
         console.log(data)
-        this.minibar.suppliers = data.suppliers
-
-        if (this.minibar.suppliers.length) {
-          const ids = this.minibar.suppliers.map(s => s.id).join()
-          let { data } = await axios.get(`${this.minibar.url}api/v2/supplier/${ids}/products`, {
-            headers: this.minibarHeaders,
-            params: {
-              query: 'Willie\'s Superbrew'
-            }
-          })
-          console.log(data)
-          this.minibar.products = data.products.sort((a, b) => a.name.localeCompare(b.name))
-        }
-        resolve()
-      })
+        this.minibar.products = data.products.sort((a, b) => a.name.localeCompare(b.name))
+      }
 
       // NOTE: leaving incase we want to search by product id
       // const { data } = await axios.post(`${this.minibar.url}api/v2/check_product_availability`, {
@@ -145,6 +142,7 @@ export default {
       // this.minibar.products = [{ ...data.product, supplier: data.supplier }]
     },
     buttonClick (product) {
+      this.$fbq('track', 'AddToCart')
       window.open(`${minibarLinks[product.name]}${product.permalink}`, '_blank')
     }
   }
